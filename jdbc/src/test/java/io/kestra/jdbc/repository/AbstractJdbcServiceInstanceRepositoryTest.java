@@ -20,6 +20,7 @@ import java.util.Set;
 
 import static io.kestra.core.server.ServiceStateTransition.Result.FAILED;
 import static io.kestra.core.server.ServiceStateTransition.Result.SUCCEEDED;
+import static io.kestra.jdbc.repository.AbstractJdbcServiceInstanceRepositoryTest.Fixtures.serviceInstanceFor;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -112,7 +113,7 @@ public abstract class AbstractJdbcServiceInstanceRepositoryTest {
     @Test
     void shouldReturnEmptyForTransitionWorkerStateGivenInvalidWorker() {
         // Given
-        ServiceInstance instance = Fixtures.RunningServiceInstance;
+        ServiceInstance instance = serviceInstanceFor(Service.ServiceState.RUNNING);
 
         // When
         ServiceStateTransition.Response result = repository
